@@ -1,0 +1,11 @@
+{
+  "packages": {
+    "iron-router": {},
+    "bootstrap3-sass": {},
+    "supercalendar": {},
+    "accounts-ui-bootstrap-3": {},
+    "fullcalendar": {},
+    "moment": {},
+    "moment-range": {}
+  }
+}

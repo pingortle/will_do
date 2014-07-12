@@ -1,0 +1,78 @@
+<head>
+	<title>Will Do!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+{{> main_header}}
+
+	<div class="container content" id="main">
+		<div class="jumbotron">
+			<h1>Will do! <small>The accountability app.</small></h1>
+			<div class="well">
+			<aside>Calendar goes here...</aside>
+			{{> calendar}}
+			</div>
+		</div>
+	</div>
+</body>
+
+<template name="calendar">
+<h2>{{monthName}}</h2>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Sunday</th>
+			<th>Monday</th>
+			<th>Tuesday</th>
+			<th>Wednesday</th>
+			<th>Thursday</th>
+			<th>Friday</th>
+			<th>Saturday</th>
+		</tr>
+	</thead>
+	<tbody>
+	{{#each weeks}}
+		{{> week}}
+	{{/each}}
+	</tbody>
+</table>
+</template>
+
+<template name="week">
+<tr>
+{{#each this}}
+	<td>{{> day}}</td>
+{{/each}}
+</tr>
+</template>
+
+<template name="day">
+{{dayOfMonth this}}
+</template>
+
+<template name="main_header">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Will Do!</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				{{#if currentUser}}
+				<li><a href="/settings">Settings</a></li>
+				{{/if}}
+			</ul>
+			<div class="nav navbar-nav navbar-right">
+					{{> loginButtons}}
+			</div>
+		</div>
+	</div>
+</nav>
+</template>
