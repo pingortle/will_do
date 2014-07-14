@@ -1,3 +1,11 @@
 Meteor.publish('events', function() {
-	Events.find();
+	var groups = Groups.find({
+		$or: [{owner: this.userId}, {member: this.userId}],
+		fields: {_id: 1},
+	}).map(function(x) {return x;});
+	return Events.find({ $or: [{owner: this.userId}, {group: {$in: groups}}] });
+});
+
+Meteor.publish('groups', function() {
+	return Groups.find({ $or: [{owner: this.userId}, {member: this.userId}] })
 });

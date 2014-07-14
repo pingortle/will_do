@@ -10,7 +10,11 @@
 		<div class="jumbotron">
 			<h1>Will do! <small>The accountability app.</small></h1>
 			<div class="well">
-			{{> calendar}}
+			{{#if currentUser}}
+				{{> calendar}}
+			{{else}}
+				<h2>Please sign in.</h2>
+			{{/if}}
 			</div>
 		</div>
 	</div>

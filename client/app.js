@@ -1,4 +1,5 @@
 Meteor.subscribe('events');
+Meteor.subscribe('groups');
 
 var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -85,7 +86,8 @@ Template.add_event_modal.events({
 			name: titleField.value,
 			date: date.toDate(),
 		};
-		Events.insert(obj);
+
+		Meteor.call('createEvent', obj);
 
 		titleField.value = '';
 		timeField.value = '';
