@@ -1,3 +1,18 @@
 @import 'client/theme/variables';
+
+$table-border-color: darken($body-bg, 15%);
+
 @import 'packages/bootstrap3-sass/bootstrap';
 @import 'client/theme/bootswatch';
+
+.table-calendar {
+	table-layout: fixed;
+}
+
+.calendar-day:hover {
+	background-color: $table-bg-hover;
+}
+
+.clockpicker-popover {
+	z-index: 100000;
+}

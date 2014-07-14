@@ -6,6 +6,8 @@
     "accounts-ui-bootstrap-3": {},
     "fullcalendar": {},
     "moment": {},
-    "moment-range": {}
+    "moment-range": {},
+    "clockpicker": {},
+    "bootstrap-3-timepicker": {}
   }
 }

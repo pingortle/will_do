@@ -8,7 +8,9 @@
       "accounts-ui-bootstrap-3": {},
       "fullcalendar": {},
       "moment": {},
-      "moment-range": {}
+      "moment-range": {},
+      "clockpicker": {},
+      "bootstrap-3-timepicker": {}
     },
     "packages": {
       "iron-router": {
@@ -45,6 +47,16 @@
         "git": "https://github.com/kevb/meteor-moment-range",
         "tag": "v1.0.1",
         "commit": "60db017c61fbe747fb0e8e696bf136ceaccd8c7c"
+      },
+      "clockpicker": {
+        "git": "https://github.com/AndrasPH/meteor-clockpicker",
+        "tag": "v0.0.2",
+        "commit": "ca94609d3e65de895992897c42e54e83afabc635"
+      },
+      "bootstrap-3-timepicker": {
+        "git": "https://github.com/ianserlin/meteor-bootstrap-timepicker.git",
+        "tag": "v0.2.5",
+        "commit": "12dd7c5dd0e67f0f307e7c5aefed74777be808f1"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
