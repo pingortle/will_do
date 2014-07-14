@@ -24,3 +24,17 @@ $table-border-color: darken($body-bg, 15%);
 .day-in-month {
 	color: lighten($body-bg, 45%);
 }
+
+.month-title {
+	text-align: center;
+}
+
+.month-name {
+	margin-right: 8px;
+	margin-left: 8px;
+}
+
+.btn-month-pager {
+	background-color: transparent;
+	color: $text-color;
+}

@@ -2,14 +2,19 @@ Meteor.subscribe('events');
 
 var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+Template.calendar.created = function() {
+	Session.set('selectedMonth', moment().startOf('month').toDate());
+};
+
 Template.calendar.helpers({
 	monthName: function(month) {
-		return monthNames[moment().month()];
+		return monthNames[Session.get('selectedMonth').getMonth()];
 	},
 	weeks: function() {
-		var firstOfMonth = moment().startOf('month');
+		var currentMonth = moment(Session.get('selectedMonth'));
+		var firstOfMonth = currentMonth.clone().startOf('month');
 		var firstOfWeek = firstOfMonth.clone().startOf('week');
-		var endOfMonth = moment().endOf('month');
+		var endOfMonth = currentMonth.clone().endOf('month');
 		var endOfWeek = endOfMonth.clone().endOf('week');
 		var weeksOfMonth = [];
 
@@ -29,12 +34,23 @@ Template.calendar.helpers({
 	},
 });
 
+Template.calendar.events({
+	'click .increment-month': function() {
+		var date = moment(Session.get('selectedMonth'));
+		Session.set('selectedMonth', date.add('month', 1).toDate());
+	},
+	'click .decrement-month': function() {
+		var date = moment(Session.get('selectedMonth'));
+		Session.set('selectedMonth', date.subtract('month', 1).toDate());
+	},
+});
+
 Template.day.helpers({
 	dayOfMonth: function(date) {
 		return date.date();
 	},
 	isInMonth: function(date) {
-		return date.month() === moment().month() ? 'day-in-month' : 'day-out-of-month';
+		return date.month() === Session.get('selectedMonth') ? 'day-in-month' : 'day-out-of-month';
 	},
 	theEvents: function(date) {
 		date = moment(date);
@@ -44,7 +60,9 @@ Template.day.helpers({
 
 Template.day.events({
 	'click .calendar-day': function() {
+		var month = moment(Session.get('selectedMonth'));
 		var date = moment(this);
+		date = month.day(date.date());
 		 Session.set('selectedDay', date.toDate());
 		 $('#add_event_modal').modal();
 	},
