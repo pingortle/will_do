@@ -18,11 +18,7 @@ $table-border-color: darken($body-bg, 15%);
 }
 
 .day-out-of-month {
-	color: lighten($body-bg, 55%);
-}
-
-.day-in-month {
-	color: lighten($body-bg, 40%);
+	color: $text-muted;
 }
 
 .month-title {
