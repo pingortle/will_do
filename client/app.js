@@ -67,16 +67,45 @@ Template.day.events({
 	},
 });
 
+var myGroups = function() {
+	return Groups.find({owner: Meteor.userId()});
+};
+
+Template.my_groups.helpers({
+	groups: myGroups,
+});
+
+Template.my_groups.events({
+	'click button.new-group': function() {
+		var newGroupNameField = $('#new_group_name')[0];
+
+		Meteor.call('createGroup', {
+			name: newGroupNameField.value,
+			members: [Meteor.userId],
+		});
+
+		newGroupNameField.value = "";
+	},
+});
+
+Template.join_groups.helpers({
+	groups: function() {
+		return Groups.find({members: {$not: Meteor.userId}});
+	},
+});
+
 Template.add_event_modal.helpers({
 	eventDate: function() {
 		return moment(Session.get("selectedDay")).format("dddd, MMMM Do YYYY");
 	},
+	groups: myGroups,
 });
 
 Template.add_event_modal.events({
 	'click button.new-event': function() {
 		var titleField = $('#new_event_title')[0];
 		var timeField = $('#new_event_time')[0];
+		var groupField = $('#new_event_group')[0];
 
 		var date = moment(Session.get('selectedDay'));
 		var time = moment(timeField.value, "HH:mm");
@@ -85,6 +114,7 @@ Template.add_event_modal.events({
 		var obj = {
 			name: titleField.value,
 			date: date.toDate(),
+			group: groupField.value,
 		};
 
 		Meteor.call('createEvent', obj);

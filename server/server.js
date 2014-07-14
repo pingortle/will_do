@@ -7,5 +7,5 @@ Meteor.publish('events', function() {
 });
 
 Meteor.publish('groups', function() {
-	return Groups.find({ $or: [{owner: this.userId}, {member: this.userId}] })
+	return Groups.find();
 });

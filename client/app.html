@@ -11,6 +11,8 @@
 			<h1>Will do! <small>The accountability app.</small></h1>
 			<div class="well">
 			{{#if currentUser}}
+				{{> my_groups}}
+				{{> join_groups}}
 				{{> calendar}}
 			{{else}}
 				<h2>Please sign in.</h2>
@@ -19,6 +21,67 @@
 		</div>
 	</div>
 </body>
+
+<template name="my_groups">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#manage_groups_modal">My Groups</button>
+
+<div class="modal fade" id="manage_groups_modal">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">My Groups</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="new_group_name">Group Name:</label>
+					<input type="text" class="form-control" id="new_group_name">
+				</div>
+
+				<div class="list-group">
+				{{#each groups}}
+					<a class="list-group-item">{{name}}</a>
+				{{/each}}
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary new-group">Add</button>
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+<template name="join_groups">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#join_groups_modal">Join Groups</button>
+
+<div class="modal fade" id="join_groups_modal">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Join Groups</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<input type="text" class="form-control" id="join_group_search" placeholder="Search">
+				</div>
+
+				<div class="list-group">
+				{{#each groups}}
+					<a class="list-group-item unjoined-group" data-group-id="{{_id}}">{{name}}</a>
+				{{/each}}
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary new-group">Add</button>
+			</div>
+		</div>
+	</div>
+</div>
+</template>
 
 <template name="calendar">
 <h2 class="month-title"><button class="btn btn-default btn-month-pager decrement-month">&laquo;</button><span class="month-name">{{monthName}}</span><button class="btn btn-default btn-month-pager increment-month">&raquo;</button></h2>
@@ -79,6 +142,18 @@
 					<span class="input-group-addon">
 						<span class="glyphicon glyphicon-time"></span>
 					</span>
+				</div>
+				<div class="input-group">
+					<select id="new_event_group" class="form-control">
+						<optgroup label="Default">
+							<option value="">None</option>
+						</optgroup>
+						<optgroup label="Groups">
+							{{#each groups}}
+							<option value="{{_id}}">{{name}}</option>
+							{{/each}}
+						</optgroup>
+					</select>
 				</div>
 			</div>
 			<div class="modal-footer">
