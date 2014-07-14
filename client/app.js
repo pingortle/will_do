@@ -60,9 +60,7 @@ Template.day.helpers({
 
 Template.day.events({
 	'click .calendar-day': function() {
-		var month = moment(Session.get('selectedMonth'));
-		var date = moment(this);
-		date = month.day(date.date());
+		var date = moment(this).startOf('day');
 		 Session.set('selectedDay', date.toDate());
 		 $('#add_event_modal').modal();
 	},
