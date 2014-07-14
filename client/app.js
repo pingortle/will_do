@@ -50,7 +50,7 @@ Template.day.helpers({
 		return date.date();
 	},
 	isInMonth: function(date) {
-		return date.month() === Session.get('selectedMonth') ? 'day-in-month' : 'day-out-of-month';
+		return date.month() === Session.get('selectedMonth').getMonth() ? 'day-in-month' : 'day-out-of-month';
 	},
 	theEvents: function(date) {
 		date = moment(date);
