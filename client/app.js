@@ -33,6 +33,9 @@ Template.day.helpers({
 	dayOfMonth: function(date) {
 		return date.date();
 	},
+	isInMonth: function(date) {
+		return date.month() === moment().month() ? 'day-in-month' : 'day-out-of-month';
+	},
 	theEvents: function(date) {
 		date = moment(date);
 		 return Events.find({ date: { $gte: date.clone().startOf('day').toDate(), $lte: date.clone().endOf('day').toDate() } });

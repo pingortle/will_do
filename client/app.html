@@ -48,7 +48,7 @@
 
 <template name="day">
 <td class="calendar-day">
-	{{dayOfMonth this}}<br>
+	<p class="{{isInMonth this}}">{{dayOfMonth this}}</p>
 	<ul>
 	{{#each theEvents this}}
 		<li>{{name}}</li>

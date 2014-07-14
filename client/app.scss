@@ -16,3 +16,11 @@ $table-border-color: darken($body-bg, 15%);
 .clockpicker-popover {
 	z-index: 100000;
 }
+
+.day-out-of-month {
+	color: lighten($body-bg, 55%);
+}
+
+.day-in-month {
+	color: lighten($body-bg, 45%);
+}
