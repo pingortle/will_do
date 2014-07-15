@@ -102,8 +102,17 @@ Template.my_groups.events({
 
 Template.join_groups.helpers({
 	groups: function() {
-		return Groups.find({members: {$not: Meteor.userId()}, owner: {$not: Meteor.userId()}});
+		return Groups.find({members: {$not: Meteor.userId()}, pendingMembers: {$not: Meteor.userId()}, owner: {$not: Meteor.userId()}});
 	},
+});
+
+Template.join_groups.events({
+	'click .unjoined-group': function(e) {
+		Meteor.call('requestGroupMembership', e.currentTarget.dataset.groupId, function(error, result) {
+			if (error)
+				console.error(error);
+		});
+	}
 });
 
 Template.add_event_modal.helpers({
