@@ -55,7 +55,12 @@ Template.day.helpers({
 	},
 	theEvents: function(date) {
 		date = moment(date);
-		 return Events.find({ date: { $gte: date.clone().startOf('day').toDate(), $lte: date.clone().endOf('day').toDate() } });
+		return Events.find({
+			date: {
+				$gte: date.clone().startOf('day').toDate(),
+				$lte: date.clone().endOf('day').toDate()
+			},
+		});
 	},
 });
 
@@ -81,7 +86,7 @@ Template.my_groups.events({
 
 		Meteor.call('createGroup', {
 			name: newGroupNameField.value,
-			members: [Meteor.userId],
+			members: [Meteor.userId()],
 		});
 
 		newGroupNameField.value = "";
@@ -90,7 +95,7 @@ Template.my_groups.events({
 
 Template.join_groups.helpers({
 	groups: function() {
-		return Groups.find({members: {$not: Meteor.userId}});
+		return Groups.find({members: {$not: Meteor.userId()}, owner: {$not: Meteor.userId()}});
 	},
 });
 
