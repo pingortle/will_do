@@ -7,6 +7,10 @@ $table-border-color: darken($body-bg, 15%);
 
 .table-calendar {
 	table-layout: fixed;
+
+	th {
+		@include text-overflow;
+	}
 }
 
 .calendar-day:hover {
