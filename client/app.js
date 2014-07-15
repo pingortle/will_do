@@ -47,6 +47,9 @@ Template.calendar.events({
 });
 
 Template.day.helpers({
+	isMyEvent: function(event) {
+		return event.owner === Meteor.userId();
+	},
 	dayOfMonth: function(date) {
 		return date.date();
 	},
@@ -69,6 +72,10 @@ Template.day.events({
 		var date = moment(this).startOf('day');
 		 Session.set('selectedDay', date.toDate());
 		 $('#add_event_modal').modal();
+	},
+	'click .close': function(e) {
+		Events.remove({_id: e.currentTarget.dataset.eventId});
+		return false;
 	},
 });
 
