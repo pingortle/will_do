@@ -1,5 +1,6 @@
 Meteor.subscribe('events');
 Meteor.subscribe('groups');
+Meteor.subscribe('fellowMembers');
 
 var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -85,7 +86,30 @@ var myGroups = function() {
 
 Template.my_groups.helpers({
 	groups: myGroups,
+	joinedGroups: function() {
+		return Groups.find({members: Meteor.userId(), owner: {$not: Meteor.userId()}});
+	},
+	getUsername: function(uID) {
+		var user = Meteor.users.findOne(uID);
+		if (!user)
+			return "";
+
+		if (user.username)
+			return user.username;
+		if (user.emails && user.emails.length > 0)
+			return user.emails[0].address;
+
+		return "Anonymous User";
+	},
 });
+
+var getPendingMemberInfo = function(element) {
+	var targetQuery = $(element);
+	var groupId = targetQuery.closest(".my-group")[0].dataset.groupId;
+	var userId = targetQuery.closest(".pending-member")[0].dataset.userId;
+
+	return {groupId: groupId, userId: userId};
+};
 
 Template.my_groups.events({
 	'click button.new-group': function() {
@@ -97,6 +121,17 @@ Template.my_groups.events({
 		});
 
 		newGroupNameField.value = "";
+	},
+	'click button.accept-member': function(e) {
+		var membershipInfo = getPendingMemberInfo(e.currentTarget);
+		Meteor.call('addMember', membershipInfo.groupId, membershipInfo.userId, function (error, result) {
+			if (error)
+				console.log(error);
+		});
+	},
+	'click button.reject-member': function(e) {
+		var membershipInfo = getPendingMemberInfo(e.currentTarget);
+		Groups.update(membershipInfo.groupId, {$pull: {pendingMembers: membershipInfo.userId}});
 	},
 });
 

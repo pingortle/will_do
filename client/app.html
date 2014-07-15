@@ -40,7 +40,27 @@
 
 				<div class="list-group">
 				{{#each groups}}
-					<a class="list-group-item">{{name}}</a>
+					<a class="list-group-item my-group" data-group-id="{{_id}}">
+						<h4>{{name}}</h4>
+						{{#each pendingMembers}}
+						<div class="pending-member" data-user-id="{{this}}">
+							<div class="btn-group btn-group-xs">
+								<button type="button" class="btn btn-default accept-member"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+								<button type="button" class="btn btn-default reject-member"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+							</div>
+							{{getUsername this}}
+							<br>
+						</div>
+						{{/each}}
+					</a>
+				{{/each}}
+				</div>
+				<h3>Joined Groups:</h3>
+				<div class="list-group">
+				{{#each joinedGroups}}
+					<a class="list-group-item joined-group" data-group-id="{{_id}}">
+						<h4>{{name}}</h4>
+					</a>
 				{{/each}}
 				</div>
 			</div>
