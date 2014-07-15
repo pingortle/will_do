@@ -1,6 +1,5 @@
-Meteor.subscribe('events');
+Meteor.subscribe('my_events');
 Meteor.subscribe('groups');
-Meteor.subscribe('fellowMembers');
 
 var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 

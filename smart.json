@@ -8,6 +8,8 @@
     "moment": {},
     "moment-range": {},
     "clockpicker": {},
-    "bootstrap-3-timepicker": {}
+    "bootstrap-3-timepicker": {},
+    "related": {},
+    "smart-publish": {}
   }
 }

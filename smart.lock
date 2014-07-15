@@ -10,7 +10,9 @@
       "moment": {},
       "moment-range": {},
       "clockpicker": {},
-      "bootstrap-3-timepicker": {}
+      "bootstrap-3-timepicker": {},
+      "related": {},
+      "smart-publish": {}
     },
     "packages": {
       "iron-router": {
@@ -58,6 +60,16 @@
         "tag": "v0.2.5",
         "commit": "12dd7c5dd0e67f0f307e7c5aefed74777be808f1"
       },
+      "related": {
+        "git": "https://github.com/peerlibrary/meteor-related.git",
+        "tag": "v0.1.2",
+        "commit": "8908b5efc39afeb3988210792b72ca593a2da735"
+      },
+      "smart-publish": {
+        "git": "https://github.com/yeputons/meteor-smart-publish.git",
+        "tag": "v0.1.4",
+        "commit": "9b0279927fa4f8042f8f56ba475ce9737ceaa8cf"
+      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.4",
@@ -77,6 +89,11 @@
         "git": "https://github.com/TimHeckel/meteor-jquery-ui.git",
         "tag": "v1.9.2",
         "commit": "c437d45edcf1367df8d5ffa8bad2867758030bd2"
+      },
+      "assert": {
+        "git": "https://github.com/peerlibrary/meteor-assert.git",
+        "tag": "v0.2.4",
+        "commit": "e81fb4ac29a621eafbd99e63660048a3c827c0fb"
       },
       "underscore-string-latest": {
         "git": "https://github.com/TimHeckel/meteor-underscore-string.git",
