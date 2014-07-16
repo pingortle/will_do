@@ -134,7 +134,7 @@
 </template>
 
 <template name="day">
-<td class="calendar-day">
+<td class="calendar-day {{isPastDate this}}">
 	<p class="{{isInMonth this}}">{{dayOfMonth this}}</p>
 	<ul class="list-group">
 	{{#each theEvents this}}

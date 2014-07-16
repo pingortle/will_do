@@ -42,3 +42,7 @@ $table-border-color: darken($body-bg, 15%);
 .pending-member {
 	margin-top: 2px;
 }
+
+.past-calendar-day {
+	background-color: rgba(#fff, .10);
+}

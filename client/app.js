@@ -46,9 +46,16 @@ Template.calendar.events({
 	},
 });
 
+var isPastDate = function(date) {
+	return moment(date).endOf('day').isBefore(moment());
+};
+
 Template.day.helpers({
 	isMyEvent: function(event) {
 		return event.owner === Meteor.userId();
+	},
+	isPastDate: function(date) {
+		return isPastDate(date) ? 'past-calendar-day' : '';
 	},
 	dayOfMonth: function(date) {
 		return date.date();
@@ -69,9 +76,11 @@ Template.day.helpers({
 
 Template.day.events({
 	'click .calendar-day': function() {
-		var date = moment(this).startOf('day');
-		 Session.set('selectedDay', date.toDate());
-		 $('#add_event_modal').modal();
+		if (!isPastDate(this)) {
+			var date = moment(this).startOf('day');
+			 Session.set('selectedDay', date.toDate());
+			 $('#add_event_modal').modal();
+		}
 	},
 	'click .close': function(e) {
 		Events.remove({_id: e.currentTarget.dataset.eventId});
