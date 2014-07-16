@@ -96,7 +96,6 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary new-group">Add</button>
 			</div>
 		</div>
 	</div>
@@ -104,7 +103,10 @@
 </template>
 
 <template name="calendar">
-<h2 class="month-title"><button class="btn btn-default btn-month-pager decrement-month">&laquo;</button><span class="month-name">{{monthName}}</span><button class="btn btn-default btn-month-pager increment-month">&raquo;</button></h2>
+<h2 class="month-title">
+	<button class="btn btn-default btn-month-pager decrement-month">&laquo;</button>
+	<span class="month-name">{{monthName}}</span>
+	<button class="btn btn-default btn-month-pager increment-month">&raquo;</button></h2>
 <table class="table table-bordered table-calendar">
 	<thead>
 		<tr>
