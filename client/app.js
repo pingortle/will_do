@@ -82,11 +82,14 @@ Template.day.helpers({
 	},
 	willDo: function(eventId, will) {
 		var ev = Events.findOne(eventId);
-		var rsvp = _.find(
+		var rsvp = null;
+		if (ev) {
+			rsvp = _.find(
 			ev.rsvps,
 			function(rsvp) {
 				return rsvp.user === Meteor.userId();
 			});
+		}
 		return rsvp && rsvp.willDo === will ?  'active' : '';
 	},
 });
