@@ -92,6 +92,13 @@ Template.day.helpers({
 		}
 		return rsvp && rsvp.willDo === will ?  'active' : '';
 	},
+	howManyDoing: function(eventId) {
+		var ev = Events.findOne(eventId);
+		if (ev)
+			return _.filter(ev.rsvps, function(x) {return x.willDo;}).length;
+		else
+			return '';
+	},
 });
 
 var getEventId = function(element) {

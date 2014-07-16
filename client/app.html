@@ -149,7 +149,7 @@
 				<button type="button" class="{{willDo _id false}} btn btn-default wont-do"><span class="glyphicon glyphicon-thumbs-down"></span></button>
 			</div>
 		{{/if}}
-		<h5>{{timeOfDay date}} <small>{{groupName this}}</small></h5>
+		<h5>{{#if isMyEvent this}}<span class="badge">{{howManyDoing this}}</span>{{/if}} {{timeOfDay date}} <small>{{groupName this}}</small></h5>
 			{{name}}
 		</li>
 	{{/each}}
