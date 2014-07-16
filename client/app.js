@@ -80,7 +80,23 @@ Template.day.helpers({
 			sort: {date: 1},
 		});
 	},
+	willDo: function(eventId, will) {
+		var ev = Events.findOne(eventId);
+		var rsvp = _.find(
+			ev.rsvps,
+			function(rsvp) {
+				return rsvp.user === Meteor.userId();
+			});
+		return rsvp && rsvp.willDo === will ?  'active' : '';
+	},
 });
+
+var getEventId = function(element) {
+	var targetQuery = $(element);
+	var eventId = targetQuery.closest(".event-item")[0].dataset.eventId;
+
+	return eventId;
+};
 
 Template.day.events({
 	'click .calendar-day': function() {
@@ -92,6 +108,18 @@ Template.day.events({
 	},
 	'click .close': function(e) {
 		Events.remove({_id: e.currentTarget.dataset.eventId});
+		return false;
+	},
+	'click .will-do': function(e) {
+		Meteor.call('willDo', getEventId(e.currentTarget), function (error, result) {
+			if (error) console.log(error);
+		});
+		return false;
+	},
+	'click .wont-do': function(e) {
+		Meteor.call('wontDo', getEventId(e.currentTarget), function (error, result) {
+			if (error) console.log(error);
+		});
 		return false;
 	},
 });
