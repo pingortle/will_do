@@ -76,6 +76,8 @@ Template.day.helpers({
 				$gte: date.clone().startOf('day').toDate(),
 				$lte: date.clone().endOf('day').toDate()
 			},
+		}, {
+			sort: {date: 1},
 		});
 	},
 });
