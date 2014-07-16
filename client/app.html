@@ -138,10 +138,16 @@
 	<p class="{{isInMonth this}}">{{dayOfMonth this}}</p>
 	<ul class="list-group">
 	{{#each theEvents this}}
-		<li class="list-group-item">
+		<li class="list-group-item event-item" data-event-id="{{_id}}">
 		{{#if isMyEvent this}}
 			<button type="button" class="close" data-event-id="{{_id}}"><span aria-hidden="true">&times;</span><span class="sr-only">Remove</span></button>
+		{{else}}
+			<div class="btn-group btn-group-xs">
+				<button type="button" class="{{willDo _id true}} btn btn-default will-do"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+				<button type="button" class="{{willDo _id false}} btn btn-default wont-do"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+			</div>
 		{{/if}}
+		<h5>{{timeOfDay date}} <small>{{groupName this}}</small></h5>
 			{{name}}
 		</li>
 	{{/each}}

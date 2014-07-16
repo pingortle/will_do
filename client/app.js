@@ -63,6 +63,12 @@ Template.day.helpers({
 	isInMonth: function(date) {
 		return date.month() === Session.get('selectedMonth').getMonth() ? 'day-in-month' : 'day-out-of-month';
 	},
+	timeOfDay: function(date) {
+		return moment(date).format("h:mm A");
+	},
+	groupName: function(event) {
+		return (Groups.findOne(event.group) || {name: "Private"}).name;
+	},
 	theEvents: function(date) {
 		date = moment(date);
 		return Events.find({
