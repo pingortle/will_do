@@ -10,7 +10,7 @@ Meteor.smartPublish('groups', function() {
 	if (!userId) return;
 
 	this.addDependency('groups', ['_id', 'members', 'owner'], function(group) {
-		var id = group.owner === userId || _.contains(group.members, userId) ? group._id : "";
+		var id = group.owner === userId || _.contains(group.members, userId) ? group._id : [null, undefined, [], ""];
 		return Events.find({group: id});
 	});
 
