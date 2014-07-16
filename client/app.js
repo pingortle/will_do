@@ -1,7 +1,7 @@
 Meteor.subscribe('my_events');
 Meteor.subscribe('groups');
 
-var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var monthNames = moment.months();
 
 Template.calendar.created = function() {
 	Session.set('selectedMonth', moment().startOf('month').toDate());
