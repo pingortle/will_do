@@ -5,6 +5,11 @@ var monthNames = moment.months();
 
 Template.calendar.created = function() {
 	Session.set('selectedMonth', moment().startOf('month').toDate());
+	Session.set('currentTime', moment().toDate());
+	Meteor.setInterval(function() {
+			Session.set('currentTime', moment().toDate());
+		},
+		60000);
 };
 
 Template.calendar.helpers({
@@ -46,8 +51,9 @@ Template.calendar.events({
 	},
 });
 
-var isPastDate = function(date) {
-	return moment(date).endOf('day').isBefore(moment());
+var isPastDate = function(date, now) {
+	now = now || moment();
+	return moment(date).endOf('day').isBefore(moment(now));
 };
 
 Template.day.helpers({
@@ -55,7 +61,7 @@ Template.day.helpers({
 		return event.owner === Meteor.userId();
 	},
 	isPastDate: function(date) {
-		return isPastDate(date) ? 'past-calendar-day' : '';
+		return isPastDate(date, Session.get('currentTime')) ? 'past-calendar-day' : '';
 	},
 	dayOfMonth: function(date) {
 		return date.date();
